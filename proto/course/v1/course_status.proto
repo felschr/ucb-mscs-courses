@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package course.v1;
+
+enum CourseStatus {
+  COURSE_STATUS_UNSPECIFIED = 0;
+  COURSE_STATUS_IN_DEVELOPMENT = 1;
+  COURSE_STATUS_RELEASED = 2;
+}

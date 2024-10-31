@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package course.v1;
+
+import "course/v1/course_status.proto";
+
+message Course {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  CourseStatus status = 4;
+}
