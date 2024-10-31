@@ -17,6 +17,8 @@
       imports = [
         inputs.devenv.flakeModule
         ./nix/overlays.nix
+        ./treefmt.nix
+        ./pre-commit.nix
         ./proto/flake-module.nix
       ];
       systems = [
