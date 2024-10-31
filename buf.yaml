@@ -1,0 +1,9 @@
+version: v2
+modules:
+  - path: proto
+deps:
+  - buf.build/googleapis/googleapis:f0e53af8f2fc4556b94f482688b57223
+lint:
+  service_suffix: Grpc
+  ignore:
+    - google

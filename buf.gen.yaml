@@ -1,0 +1,24 @@
+version: v2
+plugins:
+  - local: protoc-gen-prost
+    out: proto/gen/rs/src
+    opt:
+      - file_descriptor_set
+      - extern_path=.google.type=::google_api_proto::google::type
+  - local: protoc-gen-tonic
+    out: proto/gen/rs/src
+  - local: protoc-gen-prost-crate
+    out: proto/gen/rs
+    strategy: all
+    opt:
+      - gen_crate=./proto/gen/rs/Cargo.toml
+  - remote: buf.build/bufbuild/es:v1.10.0
+    # - local: protoc-gen-es
+    out: proto/gen/es/src
+    opt: target=ts
+    include_imports: true
+  - remote: buf.build/connectrpc/es:v1.4.0
+    # - local: protoc-gen-connect-es
+    out: proto/gen/es/src
+    include_imports: true
+    opt: target=ts

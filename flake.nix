@@ -17,6 +17,7 @@
       imports = [
         inputs.devenv.flakeModule
         ./nix/overlays.nix
+        ./proto/flake-module.nix
       ];
       systems = [
         "x86_64-linux"
