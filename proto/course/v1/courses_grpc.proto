@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package course.v1;
+
+import "course/v1/course.proto";
+
+service CoursesGrpc {
+  rpc ListCourses(ListCoursesRequest) returns (ListCoursesResponse);
+}
+
+message ListCoursesRequest { }
+
+message ListCoursesResponse {
+  repeated Course courses = 1;
+}
