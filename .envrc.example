@@ -1,0 +1,8 @@
+shopt -s globstar
+
+watch_file **/*.nix
+watch_file rust-toolchain.toml
+
+use flake . --impure
+
+dotenv
