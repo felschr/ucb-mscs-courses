@@ -1,0 +1,20 @@
+[workspace]
+resolver = "2"
+members = [
+  "proto/gen/rs",
+  "common/core",
+  "services/importer",
+  "services/api",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Felix Schröter <dev@felschr.com>"]
+description = "Rust components"
+repository = "https://github.com/felschr/ucb-mscs-courses"
+publish = false
+
+[profile.release]
+strip = true
+lto = true

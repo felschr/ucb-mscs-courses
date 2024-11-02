@@ -1,0 +1,37 @@
+FROM rust:1.80-alpine as base
+WORKDIR /app
+RUN apk update
+RUN apk --no-cache add musl-dev
+
+FROM base as chef
+RUN cargo install cargo-chef
+
+FROM chef as plan
+COPY ./Cargo.toml ./Cargo.lock ./
+COPY ./proto/gen/rs ./proto/gen/rs
+COPY ./common ./common
+COPY ./services ./services
+RUN cargo chef prepare --recipe-path recipe.json
+
+FROM chef as build
+ARG CARGO_PROFILE=release
+COPY --from=plan /app/recipe.json recipe.json
+RUN cargo chef cook $(if [ "$CARGO_PROFILE" = "release" ]; then echo --release; fi) --recipe-path recipe.json
+COPY --from=plan /app ./
+RUN cargo build $(if [ "$CARGO_PROFILE" = "release" ]; then echo --release; fi) -p ucb-mscs-courses-api
+
+ENV APP_UID=1551
+RUN echo 'app:x:$APP_UID:$APP_UID:app,,,:/home/app:/bin/false' >/etc/passwd
+
+FROM build as test
+RUN cargo test $(if [ "$CARGO_PROFILE" = "release" ]; then echo --release; fi) -p ucb-mscs-courses-api
+
+FROM scratch as final
+
+ARG CARGO_PROFILE=release
+COPY --from=build /app/target/*/ucb-mscs-courses-api .
+COPY --from=build /etc/passwd /etc/passwd
+
+ENV APP_UID=1551
+USER $APP_UID
+ENTRYPOINT ["./ucb-mscs-courses-api"]

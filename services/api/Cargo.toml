@@ -1,0 +1,36 @@
+[package]
+name = "ucb-mscs-courses-api"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "CU Boulder MSCS Courses API"
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+thiserror = "1.0"
+duplicate = "1.0"
+getset = "0.1"
+delegate = "0.12"
+nutype = { version = "0.4", features = ["serde", "regex"] }
+enum_dispatch = "0.3"
+strum = "0.26"
+strum_macros = "0.26"
+futures = "0.3"
+time = { version = "0.3", features = ["macros", "serde"] }
+tower = "0.5"
+tower-http = { version = "0.5", features = ["cors"] }
+tokio = { version = "1.29", features = ["full"] }
+prost = "0.13"
+prost-types = "0.13"
+protoc-wkt = "1.0"
+google-api-proto = { version = "1.696", features = ["google-type"] }
+tonic = "0.12"
+tonic-web = "0.12"
+tonic-health = "0.12"
+tonic-reflection = "0.12"
+tracing = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_with = { version = "3.0", features = ["time_0_3"] }
+ucb-mscs-courses-proto = { path = "../../proto/gen/rs" }
+ucb-mscs-courses-core = { path = "../../common/core" }

@@ -1,0 +1,5 @@
+[toolchain]
+channel = "1.82"
+profile = "default"
+components = [ "rust-src", "rust-analysis", "rust-analyzer" ]
+targets = [ "x86_64-unknown-linux-musl" ]

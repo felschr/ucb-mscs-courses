@@ -1,0 +1,50 @@
+[package]
+name = "ucb-mscs-courses-core"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "Common models used between services."
+repository.workspace = true
+publish.workspace = true
+
+[lib]
+
+[dependencies]
+num-traits = "0.2"
+thiserror = "1.0"
+duplicate = "1.0"
+lazy_static = "1.4"
+cached = "0.46"
+getset = "0.1"
+delegate = "0.12"
+nutype = { version = "0.4", features = ["serde", "regex"] }
+enum_dispatch = "0.3"
+futures = "0.3"
+cfg_eval = "0.1"
+config = { version = "0.13", default-features = false }
+time = { version = "0.3", features = ["macros", "serde"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_with = { version = "3.0", features = ["time_0_3"] }
+serde_test = "1.0"
+http = "0.2"
+http-body = "0.4"
+headers = "0.3"
+hyper = "0.14"
+tower = "0.5"
+tower-http = { version = "0.5", features = ["trace", "sensitive-headers"] }
+tokio = { version = "1.29", features = ["full"] }
+bson = { version = "2.11", features = ["time-0_3", "serde_with-3"] }
+prost = "0.13"
+prost-types = "0.13"
+tonic = "0.12"
+tonic-health = "0.12"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+sentry = { version = "0.34", default-features = false, features = ["reqwest", "rustls", "tracing", "tower", "tower-http"] }
+ucb-mscs-courses-proto = { path = "../../proto/gen/rs" }
+
+[dev-dependencies]
+serde_json = "1.0"
+
+[build-dependencies]
+tonic-build = "0.12"

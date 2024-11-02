@@ -20,7 +20,7 @@
         programs = {
           nixfmt.enable = true;
           rustfmt.enable = true;
-          # rustfmt.package = self'.packages.rust-toolchain;
+          rustfmt.package = self'.packages.rust-toolchain;
           formatjson5.enable = true;
           shfmt.enable = true;
           shellcheck.enable = true;
